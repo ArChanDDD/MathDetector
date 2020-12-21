@@ -9,14 +9,16 @@ from keras.models import load_model
 
 dataset_way = '4test/'
 way_to_save_letters = 'test_data/'
-image_name = 'system3.png'
+image_name = 'system2.png'
 letter_size = 80
-model_name = 'good_model.hdf5'
+model_name = 'new_model_1.hdf5'
 letter_indent = 10
 img = cv2.imread(dataset_way + image_name)
 pict_width = img.shape[0]
 pict_height = img.shape[1]
-
+letters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+           'a', '*', 'b', 'c', ':', ',', '=', 'f', 'g', 'k',
+           '(', '-', '+', ')', '/', 'x', 'y', 'z']
 
 
 
@@ -50,10 +52,9 @@ for i in range(len(before)):
     cv2.imwrite(dataset_way + 'before.jpg', img)
     #cv2.imshow('1', img)
     sip.partirnate_file(dataset_way + 'before.jpg')
-    letters = TM.Test_model(model, 32, 32)
-    for j in letters:
-        if j < 10:
-            file.write(str(j))
+    letter = TM.Test_model(model, 32, 32)
+    for j in letter:
+        file.write(letters[j])
     file.write(' \\\ \n')
     #cv2.waitKey(0)
 
@@ -71,10 +72,9 @@ for i in range(len(after)):
     #cv2.imshow('1', img)
     cv2.imwrite(dataset_way + 'after.jpg', img)
     sip.partirnate_file(dataset_way + 'after.jpg')
-    letters = TM.Test_model(model, 32, 32)
-    for j in letters:
-        if j < 10:
-            file.write(str(j))
+    letter = TM.Test_model(model, 32, 32)
+    for j in letter:
+        file.write(letters[j])
     file.write(' \\\ \n')
     #cv2.waitKey(0)
 file.write('\\end{cases}\n')
